@@ -49,18 +49,10 @@ const PersonFormDialog: React.FC<TProps> = ({
   const handleSubmit = async (formData: CreatePersonDto) => {
     try {
       if (isEdit && editData?.id) {
-        // اصلاح شده: به جای {id, data: formData}، فقط formData ارسال شود
-        // اما باید id را هم به نوعی ارسال کنیم
-        // بستگی به API شما دارد:
-
-        // اگر API انتظار id در URL دارد:
         await updatePerson({
           id: editData.id,
-          ...formData, // داده‌ها را مستقیم بفرست
+          ...formData,  
         }).unwrap();
-
-        // یا اگر API متفاوت است:
-        // await updatePerson(formData).unwrap();
 
         setSnackbar({
           open: true,
