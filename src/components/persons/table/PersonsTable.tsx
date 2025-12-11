@@ -9,6 +9,7 @@ import {
   TableBody,
 } from "@mui/material";
 import PersonRow from "./PersonRow";
+import ErrorBoundary from "../../ErrorBoundary";
 
 const PersonsTable = ({
   persons,
@@ -17,38 +18,40 @@ const PersonsTable = ({
   onDelete,
   isDeleting,
 }: any) => (
-  <TableContainer component={Paper}>
-    {isFetching && <LinearProgress />}
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell align="center">ID</TableCell>
-          <TableCell align="center">Name</TableCell>
-          <TableCell align="center">Code</TableCell>
-          <TableCell align="center">Actions</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {persons.length === 0 ? (
+  <ErrorBoundary>
+    <TableContainer component={Paper}>
+      {isFetching && <LinearProgress />}
+      <Table>
+        <TableHead>
           <TableRow>
-            <TableCell colSpan={4} align="center">
-              No persons found
-            </TableCell>
+            <TableCell align="center">ID</TableCell>
+            <TableCell align="center">Name</TableCell>
+            <TableCell align="center">Code</TableCell>
+            <TableCell align="center">Actions</TableCell>
           </TableRow>
-        ) : (
-          persons.map((p: any) => (
-            <PersonRow
-              key={p.id}
-              person={p}
-              onEdit={onEdit}
-              onDelete={onDelete}
-              isDeleting={isDeleting}
-            />
-          ))
-        )}
-      </TableBody>
-    </Table>
-  </TableContainer>
+        </TableHead>
+        <TableBody>
+          {persons.length === 0 ? (
+            <TableRow>
+              <TableCell colSpan={4} align="center">
+                No persons found
+              </TableCell>
+            </TableRow>
+          ) : (
+            persons.map((p: any) => (
+              <PersonRow
+                key={p.id}
+                person={p}
+                onEdit={onEdit}
+                onDelete={onDelete}
+                isDeleting={isDeleting}
+              />
+            ))
+          )}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  </ErrorBoundary>
 );
 
 export default PersonsTable;
