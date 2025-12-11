@@ -64,7 +64,6 @@ export const personsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: [{ type: "person" as const, id: "LIST" }],
       transformErrorResponse: (response: any) => {
-        console.log(response);
         return {
           status: response.status,
           data: response.data,
@@ -84,7 +83,6 @@ export const personsApiSlice = apiSlice.injectEndpoints({
         { type: "person" as const, id: "LIST" },
       ],
       transformErrorResponse: (response: any) => {
-        console.log(response);
         return {
           status: response.status,
           data: response.data,

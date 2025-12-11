@@ -26,7 +26,6 @@ interface PersonFormProps {
   onSubmit: (data: CreatePersonDto) => Promise<void> | void;
   onCancel?: () => void;
   isLoading?: boolean;
-  error?: string;
   initialData?: TPerson | null;
 }
 
@@ -34,7 +33,6 @@ export const PersonForm: React.FC<PersonFormProps> = ({
   onSubmit,
   onCancel,
   isLoading = false,
-  error,
   initialData,
 }) => {
   const { transformInitialDataForForm, formatDateForBackend } = usePersonForm();
@@ -154,12 +152,6 @@ export const PersonForm: React.FC<PersonFormProps> = ({
             لطفا جهت {initialData ? "ویرایش" : "ایجاد"} شخص فرم زیر را تکمیل
             فرمایید.
           </Typography>
-
-          {error && (
-            <Typography color="error" sx={{ mb: 2 }}>
-              {error}
-            </Typography>
-          )}
 
           <Grid container spacing={3}>
             <Grid size={12}>

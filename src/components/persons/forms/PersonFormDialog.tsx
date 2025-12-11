@@ -23,10 +23,10 @@ const PersonFormDialog: React.FC<TProps> = ({
   editData = null,
   onSuccess,
 }) => {
-  const [createPerson, { isLoading: isCreating, error: createError }] =
+  const [createPerson, { isLoading: isCreating}] =
     useCreatePersonMutation();
 
-  const [updatePerson, { isLoading: isUpdating, error: updateError }] =
+  const [updatePerson, { isLoading: isUpdating}] =
     useUpdatePersonMutation();
 
   const [snackbar, setSnackbar] = React.useState({
@@ -36,13 +36,8 @@ const PersonFormDialog: React.FC<TProps> = ({
   });
 
 
-  console.log(createError);
-
   const isLoading = isCreating || isUpdating;
-  const mutationError = createError || updateError;
-  const errorMessage = mutationError
-    ? (mutationError as any)?.message || "An error occurred"
-    : "";
+
 
   const handleSubmit = async (formData: CreatePersonDto) => {
     try {
@@ -77,7 +72,7 @@ const PersonFormDialog: React.FC<TProps> = ({
     } catch (error) {
       setSnackbar({
         open: true,
-        message: (error as string) || "عملیات با خطا مواجه شد",
+        message: (error as any)?.message || "عملیات با خطا مواجه شد",
         severity: "error",
       });
     }
@@ -111,7 +106,6 @@ const PersonFormDialog: React.FC<TProps> = ({
             onSubmit={handleSubmit}
             onCancel={isLoading ? undefined : handleDialogClose}
             isLoading={isLoading}
-            error={errorMessage}
             initialData={isEdit ? editData : null}
           />
         </DialogContent>

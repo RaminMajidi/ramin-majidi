@@ -28,7 +28,7 @@ const PersonRow = ({ person, onEdit, onDelete, isDeleting }: TProps) => {
     <TableRow hover>
       <TableCell align="center">{person.id}</TableCell>
       <TableCell align="center">{personTypeObject[person.typ]}</TableCell>
-      <TableCell align="center">{person.is_governmental ? "Yes" : "No"}</TableCell>
+      <TableCell align="center">{person.is_governmental ? "✅" : "❌"}</TableCell>
       <TableCell align="center">{person.natural_family || "____"}</TableCell>
       <TableCell align="center">
         <Box display="flex" justifyContent="center" gap={1}>
