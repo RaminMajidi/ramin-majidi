@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   FormControl,
@@ -28,11 +28,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import type { CreatePersonDto, TPerson } from "../../types/person.types";
-import { getPersonSchema } from "./core/person.schema";
-import { defaultValues } from "./core/data";
-import usePersonForm from "./hooks/usePersoneForm";
-import { ensureRequiredFields, getFieldsToValidateByType, parseDate } from "./tools";
+import type { CreatePersonDto, TPerson } from "../../../types/person.types";
+import { getPersonSchema } from "../core/person.schema";
+import { defaultValues } from "../core/data";
+import usePersonForm from "../hooks/usePersoneForm";
+import {
+  ensureRequiredFields,
+  getFieldsToValidateByType,
+  parseDate,
+} from "../tools";
 
 interface PersonFormProps {
   onSubmit: (data: CreatePersonDto) => Promise<void> | void;
@@ -49,11 +53,10 @@ const PersonForm: React.FC<PersonFormProps> = ({
   error,
   initialData,
 }) => {
-
   // custom hook
-  const {transformInitialDataForForm , formatDateForBackend} = usePersonForm()
+  const { transformInitialDataForForm, formatDateForBackend } = usePersonForm();
 
- // yup tools
+  // yup tools
   const {
     control,
     handleSubmit,
@@ -161,7 +164,6 @@ const PersonForm: React.FC<PersonFormProps> = ({
   };
 
   // اطمینان از اینکه همه فیلدهای required مقدار مناسب داشته باشند
- 
 
   // رندر فیلدهای خاص برای هر نوع
   const renderTypeSpecificFields = () => {

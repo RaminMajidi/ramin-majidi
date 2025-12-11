@@ -7,7 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import type { CreatePersonDto, TPerson } from "../../types/person.types";
-import PersonForm from "./PersonForm";
+import PersonForm from "./forms/PersonForm";
 import {
   useCreatePersonMutation,
   useUpdatePersonMutation,
@@ -51,7 +51,7 @@ const PersonFormDialog: React.FC<TProps> = ({
       if (isEdit && editData?.id) {
         await updatePerson({
           id: editData.id,
-          ...formData,  
+          ...formData,
         }).unwrap();
 
         setSnackbar({
@@ -79,7 +79,7 @@ const PersonFormDialog: React.FC<TProps> = ({
     } catch (error) {
       setSnackbar({
         open: true,
-        message: error as string || "عملیات با خطا مواجه شد",
+        message: (error as string) || "عملیات با خطا مواجه شد",
         severity: "error",
       });
     }
