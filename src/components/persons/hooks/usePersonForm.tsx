@@ -45,13 +45,6 @@ const usePersonForm = () => {
             ? data.legal_establishment_date
             : formatDateForBackend(data.legal_establishment_date)
           : "",
-        default_phone: data.default_phone || "",
-        default_fax: data.default_fax || "",
-        default_mobile: data.default_mobile || "",
-        default_address: data.default_address || "",
-        default_email: data.default_email || "",
-        default_website: data.default_website || "",
-        default_bank_account: data.default_bank_account || "",
       };
     },
     [formatDateForBackend]

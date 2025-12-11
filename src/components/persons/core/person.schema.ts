@@ -1,6 +1,7 @@
 // person.schema.ts
 import * as yup from "yup";
-import type { PersonType } from "../../types/person.types";
+import type { PersonType } from "../../../types/person.types";
+
 
 export const getPersonSchema = (personType: PersonType) => {
   // Schema پایه برای همه انواع
