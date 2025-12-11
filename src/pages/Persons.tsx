@@ -23,6 +23,7 @@ import {
   Typography,
   Snackbar,
   Button,
+  LinearProgress,
 } from "@mui/material";
 
 import {
@@ -31,13 +32,17 @@ import {
   Edit as EditIcon,
   Delete as DeleteIcon,
 } from "@mui/icons-material";
-import PersonFormDialog from "../components/persones/PersonFormDialog";
+import PersonFormDialog from "../components/persons/PersonFormDialog";
 import ErrorBoundary from "../components/ErrorBoundary";
+
+import NorthIcon from "@mui/icons-material/North";
+import SouthIcon from "@mui/icons-material/South";
 
 const Persons = () => {
   const [params, setParams] = useState<TGetPersonsParams>({
     page: 1,
     page_size: 10,
+    ordering: "",
   });
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -54,6 +59,7 @@ const Persons = () => {
   const {
     data: personsResponse,
     isLoading,
+    isFetching,
     isError,
     error,
     refetch,
@@ -65,6 +71,10 @@ const Persons = () => {
   // ****************************************************
   const handlePageChange = (_: unknown, page: number) => {
     setParams((prev) => ({ ...prev, page }));
+  };
+  // ****************************************************
+  const handleCodeOrderingChange = (_: unknown, ordering: string) => {
+    setParams((prev) => ({ ...prev, ordering }));
   };
 
   // ****************************************************
@@ -191,12 +201,12 @@ const Persons = () => {
   return (
     <Box sx={{ maxWidth: 1200, marginBlock: 10, marginInline: "auto" }}>
       <ErrorBoundary>
-      <PersonFormDialog
-        handleClose={handelCloseForm}
-        isEdit={isEdit}
-        open={openForm}
-        editData={editData}
-      />
+        <PersonFormDialog
+          handleClose={handelCloseForm}
+          isEdit={isEdit}
+          open={openForm}
+          editData={editData}
+        />
       </ErrorBoundary>
       {/* Header */}
       <Box
@@ -218,12 +228,47 @@ const Persons = () => {
 
       {/* Persons Table */}
       <TableContainer component={Paper}>
+        {isFetching && (
+          <Box sx={{ width: "100%" }}>
+            <LinearProgress />
+          </Box>
+        )}
         <Table>
           <TableHead>
             <TableRow>
               <TableCell align="center">ID</TableCell>
-              <TableCell align="center">Name</TableCell>
-              <TableCell align="center">Code</TableCell>
+              <TableCell
+                align="center"
+              >
+                Name
+                {params.ordering == "-code" ? (
+                  <NorthIcon
+                    fontSize="small"
+                    onClick={(e) => handleCodeOrderingChange(e, "code")}
+                  />
+                ) : (
+                  <SouthIcon
+                    fontSize="small"
+                    onClick={(e) => handleCodeOrderingChange(e, "-code")}
+                  />
+                )}
+              </TableCell>
+              <TableCell
+                align="center"
+              >
+                Code
+                {params.ordering == "-name" ? (
+                  <NorthIcon
+                    fontSize="small"
+                    onClick={(e) => handleCodeOrderingChange(e, "name")}
+                  />
+                ) : (
+                  <SouthIcon
+                    fontSize="small"
+                    onClick={(e) => handleCodeOrderingChange(e, "-name")}
+                  />
+                )}
+              </TableCell>
               <TableCell align="center">Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -322,7 +367,6 @@ const Persons = () => {
             const person = persons.find((p) => p.id === selectedPersonId);
             if (person) {
               handelOpenForm(true, person);
-              // handleEdit(person); // اگر تابع edit دارید
               handleMenuClose();
             }
           }}
@@ -362,5 +406,4 @@ const Persons = () => {
     </Box>
   );
 };
-
 export default Persons;

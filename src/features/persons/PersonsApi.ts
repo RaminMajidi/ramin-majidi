@@ -11,11 +11,18 @@ export const personsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getPersons: builder.query<PaginatedResponse<TPerson>, TGetPersonsParams>({
       query: (params) => {
-        const { page = 1, full_name, typ, page_size = 20 } = params;
+        const {
+          page = 1,
+          full_name,
+          typ,
+          page_size = 20,
+          ordering = "code",
+        } = params;
         const searchParams = new URLSearchParams();
 
         searchParams.append("page", page.toString());
         searchParams.append("page_size", page_size.toString());
+        searchParams.append("ordering", ordering);
         if (full_name) searchParams.append("full_name", full_name);
         if (typ) searchParams.append("typ", typ);
 
