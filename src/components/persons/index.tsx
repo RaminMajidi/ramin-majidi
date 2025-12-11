@@ -129,7 +129,7 @@ const PersonsPage = () => {
 
       <PersonsPagination
         totalPages={totalPages}
-        page={params.page}
+        page={params.page || 1}
         onChange={(page: number) => setParams((prev) => ({ ...prev, page }))}
         totalCount={personsResponse?.count || 0}
         currentItems={persons.length}

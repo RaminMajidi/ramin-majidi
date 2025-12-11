@@ -1,12 +1,20 @@
 import { Box, Typography, Pagination } from "@mui/material";
 
+type TProps = {
+  totalPages: number;
+  page: number;
+  onChange: (page: number) => void;
+  totalCount: number;
+  currentItems: number;
+};
+
 const PersonsPagination = ({
   totalPages,
   page,
   onChange,
   totalCount,
   currentItems,
-}: any) => (
+}: TProps) => (
   <Box display="flex" justifyContent="space-between" mt={3}>
     <Typography color="textSecondary">
       Showing {currentItems} of {totalCount}
