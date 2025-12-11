@@ -46,6 +46,9 @@ const PersonsTable = ({
           <TableHead>
             <TableRow>
               <TableCell align="center">ID</TableCell>
+              <TableCell align="center">type</TableCell>
+              <TableCell align="center">governmental</TableCell>
+              <TableCell align="center">family</TableCell>
               <TableCell align="center">
                 Name
                 {params.ordering == "-code" ? (

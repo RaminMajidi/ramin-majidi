@@ -11,13 +11,25 @@ import {
 } from "@mui/icons-material";
 import PersonActionsMenu from "./PersonActionsMenu";
 import { useState } from "react";
+import { personTypeObject } from "../core/data";
+import type { TPerson } from "../../../types/person.types";
 
-const PersonRow = ({ person, onEdit, onDelete, isDeleting }: any) => {
+type TProps = {
+  person: TPerson;
+  onEdit: (p: TPerson) => void;
+  onDelete: (id: number) => Promise<void>;
+  isDeleting: boolean;
+};
+
+const PersonRow = ({ person, onEdit, onDelete, isDeleting }: TProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   return (
     <TableRow hover>
       <TableCell align="center">{person.id}</TableCell>
+      <TableCell align="center">{personTypeObject[person.typ]}</TableCell>
+      <TableCell align="center">{person.is_governmental ? "Yes" : "No"}</TableCell>
+      <TableCell align="center">{person.natural_family || "____"}</TableCell>
       <TableCell align="center">
         <Box display="flex" justifyContent="center" gap={1}>
           <PersonIcon />

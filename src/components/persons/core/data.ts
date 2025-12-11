@@ -1,4 +1,5 @@
-import type { CreatePersonDto } from "../../types/person.types";
+import type { CreatePersonDto, PersonType } from "../../../types/person.types";
+
 
 export   const defaultValues: CreatePersonDto = {
     typ: "NATURAL",
@@ -31,12 +32,12 @@ export   const defaultValues: CreatePersonDto = {
     legal_register_no: "",
     legal_establishment_date: undefined,
 
-    // اطلاعات تماس
-    default_phone: "",
-    default_fax: "",
-    default_mobile: "",
-    default_address: "",
-    default_email: "",
-    default_website: "",
-    default_bank_account: "",
+  };
+
+
+  export const personTypeObject: Record<PersonType, string> = {
+    NATURAL: "حقیقی",
+    LEGAL: "حقوقی",
+    CIVIL_PARTICIPATE: "مشارکت مدنی",
+    FOREIGNER: "خارجی",
   };
