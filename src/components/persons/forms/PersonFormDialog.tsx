@@ -1,16 +1,11 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useCreatePersonMutation, useUpdatePersonMutation } from "../../../features/persons/PersonsApi";
 import type { CreatePersonDto, TPerson } from "../../../types/person.types";
 import PersonForm from "./PersonForm";
-
-
 
 
 type TProps = {
@@ -40,10 +35,13 @@ const PersonFormDialog: React.FC<TProps> = ({
     severity: "success" as "success" | "error",
   });
 
+
+  console.log(createError);
+
   const isLoading = isCreating || isUpdating;
   const mutationError = createError || updateError;
   const errorMessage = mutationError
-    ? (mutationError as any)?.data?.message || "An error occurred"
+    ? (mutationError as any)?.message || "An error occurred"
     : "";
 
   const handleSubmit = async (formData: CreatePersonDto) => {
@@ -108,9 +106,6 @@ const PersonFormDialog: React.FC<TProps> = ({
         onClose={isLoading ? undefined : handleDialogClose}
         aria-labelledby="person-form-dialog-title"
       >
-        <DialogTitle id="person-form-dialog-title">
-          {isEdit ? "ویرایش شخص" : "ایجاد شخص جدید"}
-        </DialogTitle>
         <DialogContent>
           <PersonForm
             onSubmit={handleSubmit}
@@ -120,15 +115,6 @@ const PersonFormDialog: React.FC<TProps> = ({
             initialData={isEdit ? editData : null}
           />
         </DialogContent>
-        <DialogActions sx={{ px: 3, pb: 2 }}>
-          <Button
-            onClick={handleDialogClose}
-            disabled={isLoading}
-            variant="outlined"
-          >
-            بستن
-          </Button>
-        </DialogActions>
       </Dialog>
 
       <Snackbar

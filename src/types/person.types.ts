@@ -41,13 +41,13 @@ export interface TPerson {
   legal_establishment_date?: string;
 
   // اطلاعات تماس
-  default_phone: string;
-  default_fax: string;
-  default_mobile: string;
-  default_address: string;
-  default_email: string;
-  default_website: string;
-  default_bank_account: string;
+  // default_phone: string;
+  // default_fax: string;
+  // default_mobile: string;
+  // default_address: string;
+  // default_email: string;
+  // default_website: string;
+  // default_bank_account: string;
 
   // متا
   created_at?: string;
@@ -87,13 +87,13 @@ export interface CreatePersonDto {
   legal_establishment_date?: string;
 
   // اطلاعات تماس
-  default_phone: string;
-  default_fax: string;
-  default_mobile: string;
-  default_address: string;
-  default_email: string;
-  default_website: string;
-  default_bank_account: string;
+  // default_phone: string;
+  // default_fax: string;
+  // default_mobile: string;
+  // default_address: string;
+  // default_email: string;
+  // default_website: string;
+  // default_bank_account: string;
 }
 
 export interface UpdatePersonDto extends Partial<CreatePersonDto> {

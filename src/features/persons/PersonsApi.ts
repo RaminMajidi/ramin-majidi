@@ -27,9 +27,7 @@ export const personsApiSlice = apiSlice.injectEndpoints({
         if (typ) searchParams.append("typ", typ);
 
         return {
-          url: `${
-            ApiConfig.endpoints.persons.base
-          }?${searchParams.toString()}`,
+          url: `${ApiConfig.endpoints.persons.base}?${searchParams.toString()}`,
         };
       },
       providesTags: (result) => {
@@ -66,7 +64,7 @@ export const personsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: [{ type: "person" as const, id: "LIST" }],
       transformErrorResponse: (response: any) => {
-        // تبدیل response به فرمت قابل استفاده
+        console.log(response);
         return {
           status: response.status,
           data: response.data,
@@ -86,6 +84,7 @@ export const personsApiSlice = apiSlice.injectEndpoints({
         { type: "person" as const, id: "LIST" },
       ],
       transformErrorResponse: (response: any) => {
+        console.log(response);
         return {
           status: response.status,
           data: response.data,

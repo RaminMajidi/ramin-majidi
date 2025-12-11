@@ -20,7 +20,6 @@ import usePersonForm from "../hooks/usePersonForm";
 import { PersonTypeRadioGroup } from "./PersonTypeRadioGroup";
 import { BasicInfoFields } from "./BasicInfoFields";
 import { TypeSpecificFields } from "./TypeSpecificFields";
-import { ContactInfoFields } from "./ContactInfoFields";
 import { FormButtons } from "./FormButtons";
 
 interface PersonFormProps {
@@ -182,12 +181,6 @@ export const PersonForm: React.FC<PersonFormProps> = ({
 
             <TypeSpecificFields
               personType={currentPersonType}
-              control={control}
-              errors={errors}
-              isLoading={isLoading}
-            />
-
-            <ContactInfoFields
               control={control}
               errors={errors}
               isLoading={isLoading}

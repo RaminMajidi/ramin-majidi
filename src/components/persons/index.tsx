@@ -39,7 +39,7 @@ const PersonsPage = () => {
     isError,
     error,
     refetch,
-  } = useGetPersonsQuery(params);
+  } = useGetPersonsQuery(params,{refetchOnMountOrArgChange:true});
 
   const [deletePerson, { isLoading: isDeleting }] = useDeletePersonMutation();
 
