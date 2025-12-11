@@ -28,7 +28,7 @@ export const personsApiSlice = apiSlice.injectEndpoints({
 
         return {
           url: `${
-            ApiConfig.endpoints.persons.getAll
+            ApiConfig.endpoints.persons.base
           }?${searchParams.toString()}`,
         };
       },

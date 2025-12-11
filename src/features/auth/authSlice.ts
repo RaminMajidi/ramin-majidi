@@ -76,7 +76,6 @@ const authSlice = createSlice({
       .addMatcher(
         authApiSlice.endpoints.login.matchFulfilled,
         (state, action) => {
-            console.log(action)
           state.isLoading = false;
           state.isAuthenticated = true;
           state.access_token = action.payload.access_token;

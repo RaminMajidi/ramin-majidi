@@ -6,12 +6,12 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import type { CreatePersonDto, TPerson } from "../../types/person.types";
-import PersonForm from "./forms/PersonForm";
-import {
-  useCreatePersonMutation,
-  useUpdatePersonMutation,
-} from "../../features/persons/PersonsApi";
+import { useCreatePersonMutation, useUpdatePersonMutation } from "../../../features/persons/PersonsApi";
+import type { CreatePersonDto, TPerson } from "../../../types/person.types";
+import PersonForm from "./PersonForm";
+
+
+
 
 type TProps = {
   open: boolean;

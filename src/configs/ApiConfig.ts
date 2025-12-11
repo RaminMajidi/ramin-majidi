@@ -2,8 +2,6 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 const API_TIMEOUT = import.meta.env.VITE_API_TIMEOUT;
 const API_RETRIES = import.meta.env.VITE_API_RETRIES;
 
-console.log(BASE_URL);
-
 export const ApiConfig = {
   api: {
     baseUrl: BASE_URL || "https://devc.ngerp.ir/api",
@@ -18,7 +16,6 @@ export const ApiConfig = {
     },
     persons: {
       base: "/general/persons/",
-      getAll: "/general/persons/",
     },
   },
 } as const;
